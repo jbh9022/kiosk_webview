@@ -12,6 +12,13 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.ApplicationModel.Core;
+using Windows.UI.ViewManagement;
+using System.Net;
+using System.Text;
+using System.Net.Http;
+using Newtonsoft.Json;
+
 
 // 빈 페이지 항목 템플릿에 대한 설명은 https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x412에 나와 있습니다.
 
@@ -22,9 +29,23 @@ namespace kiosk_1
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        string postdata;
         public MainPage()
         {
             this.InitializeComponent();
+            //주소 넣기
+            Uri u = new Uri("http://www.google.com");
+            WebView.Navigate(u);
+
+            //전체화면
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            Window.Current.SetTitleBar(null);
+            ApplicationView view = ApplicationView.GetForCurrentView();
+            view.TryEnterFullScreenMode();
+            //
+            
+            
         }
+     
     }
 }
